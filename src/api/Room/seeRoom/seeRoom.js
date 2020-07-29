@@ -1,5 +1,5 @@
 import { prisma } from "../../../../generated/prisma-client";
-import { ROOM_FRAGMENT } from "../../../fragments";
+
 export default {
   Query: {
     seeRoom: async (_, args, { request, isAuthenticated }) => {
@@ -12,7 +12,7 @@ export default {
         },
       });
       if (canSee) {
-        return await prisma.room({ id }).$fragment(ROOM_FRAGMENT);
+        return await prisma.room({ id });
       } else {
         throw Error("You can't see this.");
       }
